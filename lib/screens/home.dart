@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              _timeOfDay.format(context),
+              _timeOfDay.format(context).toString().padLeft(2, '0'),
               style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
