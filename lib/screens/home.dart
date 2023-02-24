@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:time_picker/controller/product_controller.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,13 +12,17 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   TimeOfDay _timeOfDay = TimeOfDay.now();
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Time Picker'),
+        title: const Text('Time Picker with Api Call'),
         centerTitle: true,
         elevation: 0,
+        actions: [
+          _buildAction(),
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -42,36 +48,48 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
+     body: const CircularProgressIndicator(color: Colors.blue,),
+    );
+  }
+
+  Widget _buildAction() {
+    return Column(
+      // mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Expanded(
+            child: Text(
               _timeOfDay.format(context).toString().padLeft(2, '0'),
-              style: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 11,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            MaterialButton(
-              height: 50,
-              minWidth: 150,
-              color: Colors.blue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
+          ),
+        ),
+
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, bottom: 15, right: 10),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
               ),
-              child: const Text('Open Time Picker',
+              child: const Text('Select Time',
                   style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.white,
+                      fontSize: 10,
+                      color: Colors.blue,
                       fontWeight: FontWeight.bold)),
               onPressed: () {
                 showTime();
               },
             ),
-          ],
+          ),
         ),
-      ),
+      ],
     );
   }
 
