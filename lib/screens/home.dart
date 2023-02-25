@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:time_picker/controller/product_controller.dart';
+import 'package:time_picker/screens/api_call.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -11,7 +12,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   TimeOfDay _timeOfDay = TimeOfDay.now();
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +48,19 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-     body: const CircularProgressIndicator(color: Colors.blue,),
+      body: Center(
+        child: ElevatedButton(
+            onPressed: () {
+              Get.to(const ApiCall());
+            },
+            child: const Text(
+              'Go',
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            )),
+      ),
     );
   }
 
@@ -68,7 +80,6 @@ class _HomeState extends State<Home> {
             ),
           ),
         ),
-
         Expanded(
           child: Padding(
             padding: const EdgeInsets.only(left: 20, bottom: 15, right: 10),

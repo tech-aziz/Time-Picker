@@ -11,5 +11,6 @@ class ProductRepository{
     }else{
       Exception('Something went wrong');
     }
+    return null;
   }
 }
